@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/vue.js"></script>
+    <title>Magazine</title>
+</head>
+<body>
+    <div id="app-magazine">
+        <header>
+            <div id="header-logo">
+               <img v-bind:src="vueLogo" v-bind:alt="vueAlt">
+            </div>
+            <nav>
+                <a href="">Худи</a>
+                <a href="">Футболки</a>
+                <a href="">Свитшоты</a>
+            </nav>
+            <div id="header-cart">
+                <img src="images/cart.svg" alt="" id="cart-svg">
+                {{cart}}
+            </div>
+        </header>
+        <div id="content" v-for="variant in variants" :key="variant.variantId">
+            <div id="content-pict-block">
+                <div id="pict-block">
+                    <img v-bind:src="image" v-bind:alt="vueAlt" id="imageHoodie">
+                </div>
+            </div>
+            <div id="content-info">
+                <div id="content-info-block">
+                    <div id="content-info-header">
+                        <h1>{{ hoodieText }}</h1>
+                    </div>
+                    <div id="content-info-cost">
+                        <p>{{ cost }}</p>
+                    </div>
+                    <div id="content-info-description">
+                        <p><span>Описание:</span> Классное нереальное бомбическое худи для вас покупаете быстрее в наличии только 10 штук! Не опаздывайте!</p>
+                    </div>
+                    <div id="content-info-color">
+                        <p>Цвет: <button id="black" v-on:click="switchColorBlack()"></button> <button id="white" v-on:click="switchColorWhite()"></button> <button id="orange" v-on:click="switchColorOrange()"></button></p>
+                    </div>
+                    <div id="content-info-size">
+                        <p>Размер: <button class="size">S</button> <button class="size">M</button> <button class="size">L</button></p>
+                    </div>
+                    <div id="content-info-sostav">
+                        <p>Состав: <ul><li v-for="detail in details">{{detail}}</li></ul> </p>
+                    </div>
+                    <div id="content-info-button">
+                        <button v-on:click="haveMinus">В корзину</button>
+                    </div>
+                    <div id="content-info-have">
+                        <p v-if="haveBlack > 0 || haveWhite > 0 || haveOrange > 0">Есть в наличии</p>
+                        <p v-else>Нет в наличии</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/script.js"></script>    
+</body>
+</html>
